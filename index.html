@@ -17,23 +17,8 @@ function uberTest() {
 
 var queryURL = "https://api.uber.com/v1.2/products?latitude=37.7759792&longitude=-122.41823";
 
-// Creates AJAX call for the specific movie button being clicked
-// $.ajax({
-//   url: queryURL,
-//   method: "GET",
-//   headers: {"Authorization":"CYeYg4Brhv5cRtRYESfcC9iRKG9TCDCfZhxASEaS"}
-// //   beforeSend: function (xhr) {
-// //         /* Authorization header */
-// //         xhr.setRequestHeader("Authorization", "Token CYeYg4Brhv5cRtRYESfcC9iRKG9TCDCfZhxASEaS");
-// //     }
-// }).then(function(response) {
-
-//  console.log(response);
-
-// });
-
 jQuery.ajax({
-            type: "GET",
+            type: "POST",
             url: "https://api.uber.com/v1.2/estimates/price?start_latitude=37.7752315&start_longitude=-122.418075&end_latitude=37.7752415&end_longitude=-122.518075",
             beforeSend: function(xhr) {
 
@@ -50,10 +35,8 @@ jQuery.ajax({
 
 }
 
-
-
-
 uberTest();
+
 </script>
 </body>
 </html>
