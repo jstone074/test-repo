@@ -30,6 +30,8 @@ jQuery.ajax({
 function setHeader(xhr) {
 
 xhr.setRequestHeader("Authorization", "Bearer " + token);
+xhr.setRequestHeader("Access-Control-Allow-Origin","*");
+
 }
 
 
