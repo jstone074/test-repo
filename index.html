@@ -20,7 +20,9 @@ var token = "CYeYg4Brhv5cRtRYESfcC9iRKG9TCDCfZhxASEaS"
 jQuery.ajax({
             type: "POST",
             url: queryURL, //"https://api.uber.com/v1.2/estimates/price?start_latitude=37.7752315&start_longitude=-122.418075&end_latitude=37.7752415&end_longitude=-122.518075",
-              headers: {"Authorization": token}
+            headers: {"Authorization": token},
+            crossDomain: true,
+            dataType: 'jsonp'
             
             // beforeSend: function(xhr) {
 
