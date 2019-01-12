@@ -23,14 +23,17 @@ jQuery.ajax({
             beforeSend: setHeader
             
 
+        }).then(function(response){
+            console.log(response);
         });
 
+        
 }
 
 function setHeader(xhr) {
 
 xhr.setRequestHeader("Authorization", "Bearer " + token);
-xhr.setRequestHeader("Access-Control-Allow-Origin","cross-origin");
+xhr.setRequestHeader("Access-Control-Allow-Origin","*");
 
 }
 
