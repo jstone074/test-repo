@@ -8,7 +8,7 @@
 </head>
 <body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
+<script type="text/javascript">
 
 var queryURL = "https://api.uber.com/v1/estimates/price?start_latitude=8.969145&start_longitude=-79.5177675&end_latitude=8.984104&end_longitude=-79.517467&server_token=CYeYg4Brhv5cRtRYESfcC9iRKG9TCDCfZhxASEaS"
 var token = "CYeYg4Brhv5cRtRYESfcC9iRKG9TCDCfZhxASEaS"
@@ -17,9 +17,8 @@ function uberTest() {
 
 jQuery.ajax({
             type: "GET",
-            url: queryURL, //"https://api.uber.com/v1.2/estimates/price?start_latitude=37.7752315&start_longitude=-122.418075&end_latitude=37.7752415&end_longitude=-122.518075",
+            url: queryURL, 
             crossDomain: true,
-            dataType: 'JSONP',
             beforeSend: setHeader
             
 
