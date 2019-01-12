@@ -18,26 +18,18 @@ function uberTest() {
 var queryURL = "https://api.uber.com/v1/estimates/price?start_latitude=8.969145&start_longitude=-79.5177675&end_latitude=8.984104&end_longitude=-79.517467&server_token=CYeYg4Brhv5cRtRYESfcC9iRKG9TCDCfZhxASEaS"
 var token = "CYeYg4Brhv5cRtRYESfcC9iRKG9TCDCfZhxASEaS"
 jQuery.ajax({
-            type: "POST",
+            type: "GET",
             url: queryURL, //"https://api.uber.com/v1.2/estimates/price?start_latitude=37.7752315&start_longitude=-122.418075&end_latitude=37.7752415&end_longitude=-122.518075",
             headers: {"Authorization": token},
             crossDomain: true,
-            dataType: 'JSON'
+            dataType: 'JSONP',
+            beforeSend: setHeader
             
-            // beforeSend: function(xhr) {
 
-            //     xhr.setRequestHeader("Authorization", "Token " + token);
-            //     xhr.setRequestHeader('Accept-Language', 'en_US'); 
-            //     xhr.setRequestHeader('Content-Type', 'application/json');
-            //     xhr.setRequestHeader("Access-Control-Allow-Origin","*");
-
-            // },
-            // success: function(data){
-            //    console.log("We are here" + data);
-            // }
         });
 
 }
+
 
 uberTest();
 
