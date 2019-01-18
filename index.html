@@ -3,93 +3,46 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Project 1</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Firebase link -->
-<script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+    <!-- Favicon -->
+    <!-- <link rel="icon" href=" " /> -->
+    <!-- Firebase link -->
+    <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script></script>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+    <!-- Google Maps API -->
+    <!-- <script id="googleMapsHead" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPPq1AhORafo9foQ5zn3m7pf1uVNH4xTM&libraries=places&callback=initAutocomplete"></script>  -->
+    <!-- Bootstrap style and JS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <!-- Google Font link -->
+    <link href='https://fonts.googleapis.com/css?family=Corben' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Major Mono Display' rel='stylesheet'>
+    <!-- local style css -->
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/style.css" />
+    <!-- local JS -->
+    <script src="assets/app.js"></script>
 </head>
+
 <body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript">
+    <div class="header row">
+        <img class="head1 img-fluid" src="assets/images/scoutLogoWhite.png"/> 
+     </div>
+
+    <div class="jumbotron" id="googlemaps"></div>
+    <div class="row" id="searchBar">
+        <input id="pac-input" class="controls" type="text" placeholder="Enter your destination here">
+    </div>
+    
+    <div class="container" id="buttonRow">
+        <button type="button" class="btn-outline-warning btn-lg btn1" id="uberBtn">Get Uber Info</button>
+        <button type="button" class="btn-outline-warning btn-lg btn1" id="lyftBtn">Get Lyft Info</button>
+    </div>
 
 
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyC1tZ0V983FSdADD8TTjq7bjLC0AaR_HA4",
-    authDomain: "project1-ac08d.firebaseapp.com",
-    databaseURL: "https://project1-ac08d.firebaseio.com",
-    projectId: "project1-ac08d",
-    storageBucket: "project1-ac08d.appspot.com",
-    messagingSenderId: "611644065697"
-  };
-  firebase.initializeApp(config);
-
-  var database = firebase.database();
-
-  var queryURLETA = "https://api.uber.com/v1.2/estimates/time?start_latitude=38.899714&start_longitude=-94.725960&end_latitude=38.954577&end_longitude=-95.254396&server_token=CYeYg4Brhv5cRtRYESfcC9iRKG9TCDCfZhxASEaS"
-  var queryURLPrice = "https://api.uber.com/v1/estimates/price?start_latitude=38.899714&start_longitude=-94.725960&end_latitude=38.954577&end_longitude=-95.254396&server_token=CYeYg4Brhv5cRtRYESfcC9iRKG9TCDCfZhxASEaS"
-
-function uberTestPrice() {
-
-jQuery.ajax({
-            type: "GET",
-            url: queryURLPrice, 
-            crossDomain: true,
-            beforeSend: setHeader, 
-             
-
-        }).then(function(response){
-            console.log(response);
-
-            //Looping through all the prices objects
-            for ( var i = 0; i < response.prices.length; i++){
-            
-            
-            console.log(response.prices[i].low_estimate);
-
-            }
-        });
-
-}
-
-function uberTestETA() {
-
-jQuery.ajax({
-            type: "GET",
-            url: queryURLETA, 
-            crossDomain: true,
-            beforeSend: setHeader, 
-             
-
-        }).then(function(response){
-            console.log(response);
-            console.log("This is my token " + token);
-
-             //Looping through all the ETA objects
-             for ( var i = 0; i < response.times.length; i++){
-                console.log(response.times[i].estimate);
-             }
-        });
-
-}
-
-function setHeader(xhr) {
-
-    database.ref().on("value", function(snapshot){
-      var token = (snapshot.val().Uber.UberKey);
-
-      xhr.setRequestHeader("Authorization", + token);
-      xhr.setRequestHeader("Access-Control-Allow-Origin","*");
-      
-    })
-}
-
-
-
-uberTestPrice();
-uberTestETA();
-
-
-</script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPPq1AhORafo9foQ5zn3m7pf1uVNH4xTM&libraries=places&callback=initAutocomplete"
+     async defer></script>
 </body>
-</html>
+
