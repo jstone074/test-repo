@@ -26,20 +26,49 @@
 
   var database = firebase.database();
 
-var queryURL = "https://api.uber.com/v1/estimates/price?start_latitude=8.969145&start_longitude=-79.5177675&end_latitude=8.984104&end_longitude=-79.517467&server_token=CYeYg4Brhv5cRtRYESfcC9iRKG9TCDCfZhxASEaS"
+  var queryURLETA = "https://api.uber.com/v1.2/estimates/time?start_latitude=38.899714&start_longitude=-94.725960&end_latitude=38.954577&end_longitude=-95.254396&server_token=CYeYg4Brhv5cRtRYESfcC9iRKG9TCDCfZhxASEaS"
+  var queryURLPrice = "https://api.uber.com/v1/estimates/price?start_latitude=38.899714&start_longitude=-94.725960&end_latitude=38.954577&end_longitude=-95.254396&server_token=CYeYg4Brhv5cRtRYESfcC9iRKG9TCDCfZhxASEaS"
 
-
-function uberTest() {
+function uberTestPrice() {
 
 jQuery.ajax({
             type: "GET",
-            url: queryURL, 
+            url: queryURLPrice, 
             crossDomain: true,
             beforeSend: setHeader, 
              
 
         }).then(function(response){
             console.log(response);
+
+            //Looping through all the prices objects
+            for ( var i = 0; i < response.prices.length; i++){
+            
+            
+            console.log(response.prices[i].low_estimate);
+
+            }
+        });
+
+}
+
+function uberTestETA() {
+
+jQuery.ajax({
+            type: "GET",
+            url: queryURLETA, 
+            crossDomain: true,
+            beforeSend: setHeader, 
+             
+
+        }).then(function(response){
+            console.log(response);
+            console.log("This is my token " + token);
+
+             //Looping through all the ETA objects
+             for ( var i = 0; i < response.times.length; i++){
+                console.log(response.times[i].estimate);
+             }
         });
 
 }
@@ -51,17 +80,15 @@ function setHeader(xhr) {
 
       xhr.setRequestHeader("Authorization", + token);
       xhr.setRequestHeader("Access-Control-Allow-Origin","*");
-
+      
     })
-
-
-
-
 }
 
 
 
-uberTest();
+uberTestPrice();
+uberTestETA();
+
 
 </script>
 </body>
