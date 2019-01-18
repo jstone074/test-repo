@@ -157,12 +157,10 @@ var config = {
       console.log("startLng: " + startLongitude);
       console.log("endLat: " + endLatitude);
       console.log("endLng: " + endLongitude);
-      uberTestPrice();
-      uberTestETA();
-  
+   
       var queryURLETA = "https://api.uber.com/v1.2/estimates/time?start_latitude=" + startLatitude + "&start_longitude=" + startLongitude + "&end_latitude=" + endLatitude + "&end_longitude=" + endLongitude + "&server_token=CYeYg4Brhv5cRtRYESfcC9iRKG9TCDCfZhxASEaS";
       var queryURLPrice = "https://api.uber.com/v1.2/estimates/price?start_latitude=" + startLatitude + "&start_longitude=" + startLongitude + "&end_latitude=" + endLatitude + "&end_longitude=" + endLongitude + "&server_token=CYeYg4Brhv5cRtRYESfcC9iRKG9TCDCfZhxASEaS";
-      console.log("THis is the URL for ETA " + queryURLETA);
+      // console.log("THis is the URL for ETA " + queryURLETA);
   
   
   
@@ -178,8 +176,8 @@ var config = {
                  
     
             }).then(function(response){
-                //console.log(response);
-    
+                console.log("Price");
+                
                 //Looping through all the prices objects
                 for ( var i = 0; i < response.prices.length; i++){
                 
@@ -198,11 +196,11 @@ var config = {
                 url: queryURLETA, 
                 crossDomain: true,
                 beforeSend: setHeader, 
-                 
+                
     
             }).then(function(response){
-                //console.log(response);
-    
+                console.log("ETA");
+                  
                  //Looping through all the ETA objects
                  for ( var i = 0; i < response.times.length; i++){
                     console.log(response.times[i].estimate);
@@ -215,13 +213,13 @@ var config = {
     
         database.ref().on("value", function(snapshot){
           var token = (snapshot.val().Uber.UberKey);
-    
           xhr.setRequestHeader("Authorization", + token);
           xhr.setRequestHeader("Access-Control-Allow-Origin","*");
     
         })
     }
   
-  
+    uberTestPrice();
+    uberTestETA();
   });
   }); 
